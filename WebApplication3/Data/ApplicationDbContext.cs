@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebApplication3.Models;
 
 namespace WebApplication3.Data
 {
@@ -12,5 +13,9 @@ namespace WebApplication3.Data
             : base(options)
         {
         }
+        public DbSet<Address> Address { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        // public DbSet<WebApplication3.Models.Address> Address { get; set; }
+        // public DbSet<WebApplication3.Models.Customer> Customer { get; set; }
     }
 }

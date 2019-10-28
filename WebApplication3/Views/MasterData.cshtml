@@ -1,0 +1,16 @@
+﻿@page
+@model WebApplication3.Views.MasterDataModel
+@{
+    ViewData["Title"] = "Master Data";
+}
+
+<h2>MasterData</h2>
+
+
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        <li><a asp-area="" asp-controller="Addresses" asp-action="Index">Address Menu</a></li>
+        <li><a asp-area="" asp-controller="Customers" asp-action="Index">Customer Menu</a></li>
+
+    </ul>
+</div>

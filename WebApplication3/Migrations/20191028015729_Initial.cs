@@ -2,12 +2,31 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebApplication3.Data.Migrations
+namespace WebApplication3.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Address",
+                columns: table => new
+                {
+                    Address_id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Address1 = table.Column<string>(nullable: true),
+                    Address2 = table.Column<string>(nullable: true),
+                    District = table.Column<string>(nullable: true),
+                    City_id = table.Column<int>(nullable: false),
+                    Postal_code = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    Last_update = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Address", x => x.Address_id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -45,6 +64,26 @@ namespace WebApplication3.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customer",
+                columns: table => new
+                {
+                    Customer_id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Store_id = table.Column<int>(nullable: false),
+                    First_name = table.Column<string>(nullable: true),
+                    Last_name = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Address_id = table.Column<int>(nullable: false),
+                    Active = table.Column<string>(nullable: false),
+                    Create_date = table.Column<DateTime>(nullable: false),
+                    Last_update = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customer", x => x.Customer_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -196,6 +235,9 @@ namespace WebApplication3.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Address");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -209,6 +251,9 @@ namespace WebApplication3.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Customer");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
